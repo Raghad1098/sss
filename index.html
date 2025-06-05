@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>لعبة الحروف</title>
+<style>
+body {
+font-family: Arial;
+text-align: center;
+background-color: #1a1a2e;
+color: white;
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(5, 60px);
+gap: 10px;
+justify-content: center;
+margin-top: 30px;
+}
+
+.cell {
+background-color: white;
+color: black;
+width: 60px;
+height: 60px;
+font-size: 24px;
+font-weight: bold;
+border-radius: 10px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.red { background-color: #e74c3c; color: white; }
+.blue { background-color: #3498db; color: white; }
+
+.controls {
+margin-top: 20px;
+}
+
+.team-btn {
+padding: 10px 20px;
+margin: 5px;
+font-size: 18px;
+border: none;
+cursor: pointer;
+border-radius: 8px;
+}
+
+.team-red { background-color: #e74c3c; color: white; }
+.team-blue { background-color: #3498db; color: white; }
+</style>
+</head>
+<body>
+
+<h1>لعبة الحروف - الفريق الأحمر × الفريق الأزرق</h1>
+
+<div class="controls">
+<button class="team-btn team-red" onclick="setTeam('red')">الفريق الأحمر</button>
+<button class="team-btn team-blue" onclick="setTeam('blue')">الفريق الأزرق</button>
+</div>
+
+<div class="grid" id="letterGrid"></div>
+
+<script>
+const letters = [
+'ص','س','ش','ذ','خ',
+'ه','ج','ث','ر','غ',
+'و','ح','ن','أ','ظ',
+'ع','ت','ط','ض','م',
+'ك','ق','ل','ز','ب'
+];
+
+let currentTeam = 'red';
+
+function setTeam(team) {
+currentTeam = team;
+}
+
+const grid = document.getElementById("letterGrid");
+
+letters.forEach((letter, index) => {
+const cell = document.createElement("div");
+cell.className = "cell";
+cell.innerText = letter;
+cell.onclick = () => {
+if (!cell.classList.contains('red') && !cell.classList.contains('blue')) {
+cell.classList.add(currentTeam);
+}
+};
+grid.appendChild(cell);
+});
+</script>
+
+</body>
+</html>
